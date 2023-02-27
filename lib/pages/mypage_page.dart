@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ocean_prototype/pages/setting_page.dart';
 import 'package:ocean_prototype/widgets/feed_item.dart';
-
+import 'package:ocean_prototype/pages/setting_page.dart';
 class Mypage_Page extends StatelessWidget {
   const Mypage_Page({Key? key}) : super(key: key);
 
@@ -10,7 +11,9 @@ class Mypage_Page extends StatelessWidget {
       appBar: AppBar(
         leading: Icon(Icons.waves_rounded),
         title: Text('바다'),
-        actions: [Icon(Icons.add_box_outlined,)],
+        actions: [IconButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Setting_Page(),));
+        }, icon: Icon(Icons.ac_unit_outlined))],
       ),
       body: ListView(
         padding: EdgeInsets.only(left: 15,right: 15),

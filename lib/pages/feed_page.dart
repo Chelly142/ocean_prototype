@@ -10,11 +10,20 @@ class Feed_page extends StatelessWidget {
         children: [
           AppBar(
             title:
-                TextFormField(
-                  decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.search)
+                Container(
+                  child: TextField(
+                    decoration:
+                    InputDecoration(
+                      suffixIconColor: Colors.black54,
+                      labelText: "검색창",
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.black54)),
+                      suffixIcon: Icon(Icons.search),
+
+
+                    ),
                   ),
-                ),
+                )
+
             ),
           Container(child: Text("전체 개수",),alignment: Alignment.centerLeft,decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black),bottom: BorderSide(color: Colors.black)))),
           Container(child: Text("필터",),alignment: Alignment.centerRight),

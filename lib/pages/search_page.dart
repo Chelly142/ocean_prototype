@@ -7,12 +7,25 @@ class Search_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar : AppBar(
-        title: TextFormField(
-          decoration: InputDecoration(
-              suffixIcon: Icon(Icons.search)
-          ),
-        ),
-      )
-    );
+          title:
+          Container(
+            child: TextField(
+
+              decoration:
+              InputDecoration(
+                suffixIconColor: Colors.black54,
+                labelText: "검색창",
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.black54)),
+                suffixIcon: Icon(Icons.search),
+
+
+              ),
+            ),
+          )
+      ),
+
+
+
+        );
   }
 }
