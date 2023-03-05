@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ocean_prototype/widgets/feed_item.dart';
+import 'package:ocean_prototype/models/feed_model.dart';
 class Feed_page extends StatelessWidget {
   const Feed_page({Key? key}) : super(key: key);
 
@@ -35,7 +36,7 @@ class Feed_page extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
+                  Flexible(flex: 5, child: Feedw_Item(),),
                   Spacer(flex: 1),
                   Flexible(flex: 5, child: Feed_Item(),),
                   Spacer(flex: 1),
@@ -153,5 +154,51 @@ class Feed_page extends StatelessWidget {
 
       );
 
+  }
+}
+class FeedWidget extends StatefulWidget {
+  const FeedWidget({
+    Key? key,
+    required this.feed_item;
+  }) : super(key: key);
+  final Feed_Item feed_item;
+  @override
+  State<FeedWidget> createState() => _FeedWidgetState();
+}
+
+class _FeedWidgetState extends State<FeedWidget> {
+  late Future<List<Feeds>>futureFeeds;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    futureFeeds = fetchFeeds();
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    Feed_Item feed_item = widget.feed_item;
+    return FutureBuilder<List<Feeds>>(
+      future: futureFeeds,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+          return ListView(
+            children: <Widget>[
+              ...snapshot.data!.map((e) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Spacer(flex: 1),
+                  Flexible(flex: 5, child: Feed_item.,),
+                  Spacer(flex: 1),
+                  Flexible(flex: 5, child: Feed_Item(),),
+                  Spacer(flex: 1),
+                ],
+              ),)
+
+            ],
+          );
+        }
+      },
+    );
   }
 }
