@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ocean_prototype/widgets/feed_item.dart';
 import 'package:ocean_prototype/models/feed_model.dart';
+import 'package:ocean_prototype/widgets/feed_item.dart';
 class Feed_page extends StatelessWidget {
   const Feed_page({Key? key}) : super(key: key);
 
@@ -11,194 +11,66 @@ class Feed_page extends StatelessWidget {
         children: [
           AppBar(
             title:
-                Container(
-                  child: TextField(
-                    decoration:
-                    InputDecoration(
-                      suffixIconColor: Colors.black54,
-                      labelText: "검색창",
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.black54)),
-                      suffixIcon: Icon(Icons.search),
-
-
-                    ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.search)
                   ),
-                )
-
+                ),
             ),
           Container(child: Text("전체 개수",),alignment: Alignment.centerLeft,decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black),bottom: BorderSide(color: Colors.black)))),
           Container(child: Text("필터",),alignment: Alignment.centerRight),
-          Expanded(child: ListView(
-            scrollDirection: Axis.vertical,
-            padding: EdgeInsets.only(top:10),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feedw_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-
-
-            ],
-          ),)
-        ]
-
+          Expanded(child:Feeds_Widget()),
+        ],
       )
-
-
-
-      );
-
+    );
   }
+  
 }
-class FeedWidget extends StatefulWidget {
-  const FeedWidget({
-    Key? key,
-    required this.feed_item;
-  }) : super(key: key);
-  final Feed_Item feed_item;
+class Feeds_Widget extends StatefulWidget {
+  const Feeds_Widget({Key? key}) : super(key: key);
+
   @override
-  State<FeedWidget> createState() => _FeedWidgetState();
+  State<Feeds_Widget> createState() => _Feeds_WidgetState();
 }
 
-class _FeedWidgetState extends State<FeedWidget> {
+class _Feeds_WidgetState extends State<Feeds_Widget> {
   late Future<List<Feeds>>futureFeeds;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     futureFeeds = fetchFeeds();
-
   }
   @override
   Widget build(BuildContext context) {
-    Feed_Item feed_item = widget.feed_item;
-    return FutureBuilder<List<Feeds>>(
+    return FutureBuilder(
       future: futureFeeds,
       builder: (context, snapshot) {
+        if(snapshot.hasError){
+          return Text(snapshot.error.toString());
+        }
         if(snapshot.hasData){
-          return ListView(
-            children: <Widget>[
-              ...snapshot.data!.map((e) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_item.,),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),)
-
-            ],
+          List<Feeds> feeds = snapshot.data as List<Feeds>;
+          return GridView.builder(
+            padding: EdgeInsets.only(left:10,right: 10),
+            itemCount: feeds.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1/1.3,
+              crossAxisSpacing: 40,
+              mainAxisSpacing: 40,
+            ),
+            itemBuilder: (context, index) {
+              Feeds nowFeed = feeds.elementAt(index);
+              return Feed_Item(nickname: nowFeed.userId.toString(), location_name: nowFeed.locationName, category: nowFeed.category, photos: nowFeed.photos);
+            },
           );
+        }
+        else{
+          return Text("실패!");
         }
       },
     );
   }
 }
+

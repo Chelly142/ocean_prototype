@@ -63,46 +63,7 @@ class Mypage_Page extends StatelessWidget {
                   margin: EdgeInsets.only(top: 10,bottom: 10),
                   child: Text("자기소개")
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                  Flexible(flex: 5, child: Feed_Item(),),
-                  Spacer(flex: 1),
-                ],
-              ),
+
 
             ],
 

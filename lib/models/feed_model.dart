@@ -62,7 +62,7 @@ Future<List<Feeds>> fetchFeeds() async{
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return (jsonDecode(response.body)as List)
+    return (jsonDecode(utf8.decode(response.bodyBytes))as List)
         .map((e) => Feeds.fromJson(e))
         .toList();
   } else {

@@ -31,7 +31,7 @@ class _Feed_ItemState extends State<Feed_Item> {
         },
         child:
         Container(
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all(30),
           child: Column(
             children: [
               Image.asset(photos!),
