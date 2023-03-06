@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ocean_prototype/pages/setting_page.dart';
-import 'package:ocean_prototype/widgets/feed_item.dart';
-import 'package:ocean_prototype/pages/setting_page.dart';
+
 class Mypage_Page extends StatelessWidget {
   const Mypage_Page({Key? key}) : super(key: key);
 

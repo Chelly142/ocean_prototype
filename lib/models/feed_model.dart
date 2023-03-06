@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 class Feeds {
@@ -28,10 +29,11 @@ class Feeds {
         this.userId});
 
   Feeds.fromJson(Map<String, dynamic> json) {
+
     id = json['id'];
     name = json['name'];
     feedId = json['feed_id'];
-    photos = json['photos'];
+    photos = json['photos'] ;
     location = json['location'];
     time = json['time'];
     content = json['content'];
