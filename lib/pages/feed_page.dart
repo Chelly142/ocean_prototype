@@ -19,38 +19,38 @@ class Feed_page extends StatelessWidget {
             ),
           Container(child: Text("전체 개수",),alignment: Alignment.centerLeft,decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black),bottom: BorderSide(color: Colors.black)))),
           Container(child: Text("필터",),alignment: Alignment.centerRight),
-          Expanded(child:Feeds_Widget()),
+          Expanded(child:FeedListWidget()),
         ],
       )
     );
   }
   
 }
-class Feeds_Widget extends StatefulWidget {
-  const Feeds_Widget({Key? key}) : super(key: key);
+class FeedListWidget extends StatefulWidget {
+  const FeedListWidget({Key? key}) : super(key: key);
 
   @override
-  State<Feeds_Widget> createState() => _Feeds_WidgetState();
+  State<FeedListWidget> createState() => _FeedListWidgetState();
 }
 
-class _Feeds_WidgetState extends State<Feeds_Widget> {
-  late Future<List<Feeds>>futureFeeds;
+class _FeedListWidgetState extends State<FeedListWidget> {
+  late Future<List<Feed>>futureFeedList;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    futureFeeds = fetchFeeds();
+    futureFeedList = fetchFeedList();
   }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: futureFeeds,
+      future: futureFeedList,
       builder: (context, snapshot) {
         if(snapshot.hasError){
           return Text(snapshot.error.toString());
         }
         if(snapshot.hasData){
-          List<Feeds> feeds = snapshot.data as List<Feeds>;
+          List<Feed> feeds = snapshot.data as List<Feed>;
           return GridView.builder(
             padding: EdgeInsets.only(left:10,right: 10),
             itemCount: feeds.length,
@@ -61,8 +61,8 @@ class _Feeds_WidgetState extends State<Feeds_Widget> {
               mainAxisSpacing: 40,
             ),
             itemBuilder: (context, index) {
-              Feeds nowFeed = feeds.elementAt(index);
-              return Feed_Item(nickname: nowFeed.userId.toString(), location_name: nowFeed.locationName, category: nowFeed.category, photos: nowFeed.photos);
+              Feed nowFeed = feeds.elementAt(index);
+              return Feed_Item(userID: nowFeed.userId, locationName: nowFeed.locationName, feedActivity: nowFeed.feedActivity, photos: nowFeed.photos);
             },
           );
         }

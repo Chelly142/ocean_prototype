@@ -7,14 +7,14 @@ import 'package:ocean_prototype/pages/detail_feed_page.dart';
 class Feed_Item extends StatefulWidget {
   Feed_Item({
     Key? key,
-    required this.nickname,
-    required this.location_name,
-    required this.category,
+    required this.userID,
+    required this.locationName,
+    required this.feedActivity,
     required this.photos,
   }) : super(key: key);
-  final String? nickname;
-  final String? location_name;
-  final String? category;
+  final String? userID;
+  final String? locationName;
+  final String? feedActivity;
   final String? photos;
   @override
   State<Feed_Item> createState() => _Feed_ItemState();
@@ -25,9 +25,9 @@ class Feed_Item extends StatefulWidget {
 class _Feed_ItemState extends State<Feed_Item> {
   @override
   Widget build(BuildContext context) {
-    String? nickname = widget.nickname;
-    String? location_name =  widget.location_name;
-    String? category = widget.category;
+    String? user_ID = widget.userID;
+    String? location_name =  widget.locationName;
+    String? feed_activity = widget.feedActivity;
     String? photo = widget.photos;
     return InkWell(
         onTap: () {
@@ -39,8 +39,9 @@ class _Feed_ItemState extends State<Feed_Item> {
           child: Column(
             children: [
               Image.network('http://127.0.0.1:8000/'+photo!), // 흐음... 이게 맞나...
-              Text(category!),
-              Text(nickname!)
+              Text(feed_activity!),
+              Text(user_ID!),
+              Text(location_name!),
             ],
           ),
         )
